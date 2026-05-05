@@ -243,11 +243,12 @@
                             
                             <div class="flex items-center gap-3 text-sm font-medium">
                                 <i data-lucide="mail" class="w-5 h-5 text-brand-purple"></i>
-                                <span>contact@12azqha.com</span>
+                                <!-- Email populated by JS -->
+                                <a href="#" class="protected-email hover:underline text-brand-dark">...</a>
                             </div>
                             <div class="flex items-center gap-3 text-sm font-medium">
                                 <img src="https://cdn.simpleicons.org/instagram/8F5BFF" alt="Instagram" class="w-5 h-5" />
-                                <span>@r_12k.</span>
+                                <a href="https://instagram.com/r_12k." target="_blank" class="hover:underline text-brand-dark">@r_12k.</a>
                             </div>
                         </div>
                         
@@ -266,7 +267,7 @@
                                     About Me <i data-lucide="sparkle" class="w-6 h-6 fill-brand-purple text-brand-purple"></i>
                                </h3>
                                <div class="text-sm text-gray-800 leading-relaxed space-y-4">
-                                   <p>Hi, I'm Raja Razqha Sutan Rabani — a 3D Artist with a strong interest in visual communication and creative storytelling.</p>
+                                   <p>Hi, I'm Raja Razqha Sutan Rabani — a Game Design student with a strong interest in 3D Art and becoming a professional 3D Artist.</p>
                                    <p>I'm constantly learning, experimenting, and refining my art style to express my creativity in a clear and memorable way. I aim to create optimized, engine-ready assets without compromising on aesthetic quality.</p>
                                </div>
                             </div>
@@ -520,59 +521,69 @@
             </div>
         </section>
 
-        <!-- SLIDE 5: CONTACT / QR CODE -->
+        <!-- SLIDE 5: CONTACT / END SCREEN -->
         <section class="slide-wrapper" id="slide-5">
-            <div class="slide-content bg-brand-yellow flex flex-col items-center justify-center relative p-8">
+            <div class="slide-content bg-brand-yellow flex flex-col relative p-8 md:p-12">
                 
                 <!-- Background Grid -->
-                <div class="absolute inset-0 bg-blueprint opacity-50 mix-blend-multiply pointer-events-none"></div>
+                <div class="absolute inset-0 bg-blueprint opacity-50 mix-blend-multiply pointer-events-none z-0"></div>
 
-                <!-- Content -->
-                <div class="z-10 flex flex-col items-center text-center">
-                    
-                    <div class="bounding-box border border-brand-purple/50 px-8 py-4 bg-white/80 backdrop-blur-sm mb-12">
-                        <div class="inner-nodes"></div>
-                        <h2 class="text-5xl md:text-7xl font-black text-brand-purple uppercase tracking-tighter" style="text-shadow: 2px 2px 0px #fff;">
-                            let's build<br>together
-                        </h2>
-                    </div>
+                <!-- Top Left: Save Portfolio Button -->
+                <button onclick="window.print()" class="no-print absolute top-8 left-8 text-xs font-bold font-mono text-brand-purple uppercase hover:underline flex items-center gap-2 z-20">
+                    <i data-lucide="printer" class="w-4 h-4"></i> SAVE MY PORTFOLIO
+                </button>
+
+                <!-- Top Right: Brand -->
+                <div class="absolute top-8 right-8 text-xs font-bold font-mono text-brand-purple uppercase z-20 opacity-80">
+                    R12AZQHA
+                </div>
+
+                <!-- Center Content: Thank You & QR -->
+                <div class="flex-1 flex flex-col items-center justify-center text-center mt-12 z-10">
+                    <p class="text-lg md:text-xl font-medium mb-4 text-brand-purple uppercase tracking-widest">That's is all for now!</p>
+                    <h2 class="text-4xl md:text-7xl lg:text-[100px] font-black tracking-tighter uppercase mb-12 text-brand-purple" style="text-shadow: 2px 2px 0px #fff;">
+                        Thank You <span class="font-light">For Visiting</span>
+                    </h2>
                     
                     <!-- QR Code Block (Clickable to top) -->
-                    <a href="#slide-1" class="block p-6 bg-white border-4 border-brand-purple shadow-[16px_16px_0_#8F5BFF] hover:-translate-y-2 hover:shadow-[20px_20px_0_#8F5BFF] transition-all relative">
-                        <!-- corner accents -->
-                        <div class="absolute top-2 left-2 w-2 h-2 bg-brand-purple"></div>
-                        <div class="absolute top-2 right-2 w-2 h-2 bg-brand-purple"></div>
-                        <div class="absolute bottom-2 left-2 w-2 h-2 bg-brand-purple"></div>
-                        <div class="absolute bottom-2 right-2 w-2 h-2 bg-brand-purple"></div>
+                    <div class="flex flex-col items-center">
+                        <a href="#slide-1" class="block p-4 bg-white border-4 border-brand-purple shadow-[16px_16px_0_#8F5BFF] hover:-translate-y-2 hover:shadow-[20px_20px_0_#8F5BFF] transition-all relative">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://r12azqha.com/portofolio/&color=8F5BFF&bgcolor=FFFFFF" alt="QR Code to Portfolio" class="w-48 h-48 md:w-64 md:h-64 object-contain">
+                        </a>
+                        <span class="font-mono text-sm uppercase tracking-widest text-brand-purple mt-6 font-bold bg-white px-4 py-2 border-2 border-brand-purple shadow-[4px_4px_0_#8F5BFF]">Scan to view on web</span>
+                    </div>
+                </div>
 
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://r12azqha.com/portofolio/&color=8F5BFF&bgcolor=FFFFFF" alt="QR Code to Portfolio" class="w-48 h-48 md:w-64 md:h-64 object-contain">
-                    </a>
+                <!-- Bottom Columns: Contact & Bio -->
+                <div class="w-full flex flex-col md:flex-row justify-between items-start md:items-end mt-auto pt-12 text-sm z-10 text-brand-purple">
                     
-                    <div class="mt-6 flex flex-col items-center gap-4">
-                        <div class="flex items-center gap-3 font-mono text-brand-purple bg-white px-6 py-3 border-2 border-brand-purple font-bold shadow-[4px_4px_0_#8F5BFF]">
-                            <i data-lucide="scan-line" class="w-6 h-6"></i>
-                            <span class="uppercase tracking-widest text-sm">Scan to view on web</span>
+                    <!-- Left: Bio Pitch -->
+                    <div class="max-w-sm mb-8 md:mb-0 text-left">
+                        <p class="font-black text-2xl uppercase tracking-wider mb-2" style="text-shadow: 1px 1px 0px #fff;">Let's Collab!</p>
+                        <p class="opacity-90 font-medium leading-relaxed">I'm always open for new projects and collaborations. Feel free to reach out.</p>
+                    </div>
+                    
+                    <!-- Right: Contact Info -->
+                    <div class="text-left md:text-right font-bold">
+                        <p class="font-black text-xl uppercase tracking-wider mb-3" style="text-shadow: 1px 1px 0px #fff;">Contact me!</p>
+                        <div class="space-y-2">
+                            <p class="flex items-center md:justify-end gap-2">
+                                <i data-lucide="mail" class="w-4 h-4"></i> 
+                                <!-- Email populated by JS to prevent scraping -->
+                                <a href="#" class="protected-email hover:underline">...</a>
+                            </p>
+                            <p class="flex items-center md:justify-end gap-2">
+                                <i data-lucide="globe" class="w-4 h-4"></i> <a href="https://12azqha.com" target="_blank" class="hover:underline">12azqha.com</a>
+                            </p>
+                            <p class="flex items-center md:justify-end gap-2">
+                                <img src="https://cdn.simpleicons.org/instagram/8F5BFF" alt="Instagram" class="w-4 h-4" /> 
+                                <a href="https://instagram.com/r_12k." target="_blank" class="hover:underline">@r_12k.</a>
+                            </p>
                         </div>
-                        
-                        <!-- PDF Export Button -->
-                        <button onclick="window.print()" class="no-print mt-2 bg-white border-2 border-brand-purple text-brand-purple font-bold font-mono px-6 py-3 text-sm shadow-[4px_4px_0_#8F5BFF] hover:translate-y-1 hover:shadow-[2px_2px_0_#8F5BFF] transition-all flex items-center gap-2">
-                            <i data-lucide="printer" class="w-5 h-5"></i> SAVE MY PORTFOLIO
-                        </button>
                     </div>
 
-                    <a href="mailto:contact@12azqha.com" class="mt-10 text-xl font-black text-brand-purple hover:underline uppercase flex items-center gap-2 group bg-white/50 px-4 py-2 rounded backdrop-blur-sm">
-                        <i data-lucide="mail" class="w-6 h-6"></i> contact@12azqha.com 
-                    </a>
                 </div>
 
-                <!-- Footer Strip -->
-                <div class="absolute bottom-0 left-0 w-full h-12 bg-brand-purple flex items-center justify-between px-6 shrink-0 border-t-2 border-brand-dark text-white z-20">
-                    <span class="text-xl font-black uppercase text-brand-yellow">R12AZQHA</span>
-                    <div class="hidden md:flex space-x-6 text-xs font-bold uppercase text-brand-yellow/80">
-                        <span>let's work together</span>
-                    </div>
-                    <span class="text-xs font-mono tracking-widest uppercase">page * 05 / 05</span>
-                </div>
             </div>
         </section>
 
@@ -580,6 +591,24 @@
 
     <script>
         lucide.createIcons();
+
+        // Devil's Advocate: Dynamic Email Masking to stop scrapers
+        document.addEventListener('DOMContentLoaded', () => {
+            const emailElements = document.querySelectorAll('.protected-email');
+            const u = 'contact';
+            const d = '12azqha.com';
+            
+            emailElements.forEach(el => {
+                // visually build it
+                el.textContent = `${u}@${d}`;
+                
+                // attach click event dynamically
+                el.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    window.location.href = `mailto:${u}@${d}`;
+                });
+            });
+        });
     </script>
 </body>
 </html>
