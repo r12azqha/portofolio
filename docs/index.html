@@ -166,10 +166,6 @@
 
         /* --- PDF PRINT OPTIMIZATIONS --- */
         @media print {
-            :root {
-                /* Flips all yellow elements to white instantly during print */
-                --theme-yellow: #FFFFFF; 
-            }
             @page {
                 size: 16in 9in landscape; /* forces 16:9 pdf pages */
                 margin: 0;
@@ -559,7 +555,7 @@
                             Primary Lockup
                         </div>
                         
-                        <div class="flex items-center gap-6 md:gap-10 hover:scale-105 transition-transform cursor-default">
+                        <div class="flex items-center gap-6 md:gap-10 cursor-default">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1030 1018" class="w-16 md:w-32 text-brand-dark">
                                 <g>
                                     <path d="M 0.00 509.00 L 0.00 0.00 L 137.50 0.00 L 275.00 0.00 L 275.00 362.00 L 275.00 724.00 L 652.50 724.00 L 1030.00 724.00 L 1030.00 871.00 L 1030.00 1018.00 L 515.00 1018.00 L 0.00 1018.00 L 0.00 509.00 ZM 428.35 716.75 C428.09,716.34 428.78,716.00 429.87,716.00 C430.97,716.00 438.97,713.70 447.66,710.88 C545.15,679.32 625.58,617.76 677.84,534.70 C711.58,481.07 733.44,406.80 738.97,327.00 C739.53,319.02 739.98,308.34 739.99,303.25 L 740.00 294.00 L 884.59 294.00 L 1029.19 294.00 L 1028.52 303.75 C1019.73,432.27 992.14,537.26 941.08,636.50 C926.77,664.31 900.08,709.80 894.59,715.74 C893.68,716.73 844.80,717.04 661.13,717.24 C533.35,717.38 428.60,717.16 428.35,716.75 ZM 284.00 143.50 L 284.00 0.00 L 657.00 0.00 L 1030.00 0.00 L 1030.00 143.50 L 1030.00 287.00 L 657.00 287.00 L 284.00 287.00 L 284.00 143.50 Z" fill="currentColor"/>
@@ -718,8 +714,8 @@
                         <i data-lucide="crosshair" class="w-6 h-6 text-brand-yellow"></i>
                     </div>
 
-                    <div class="flex-1 w-full h-full relative group cursor-pointer border-2 border-brand-dark overflow-hidden bg-brand-dark shadow-[8px_8px_0_#0A0A0A]">
-                        <img src="https://github.com/r12azqha/portofolio/blob/main/docs/assets/images/Screenshot%202026-05-06%20081915.png?raw=true" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="3D Modeling Project">
+                    <div class="flex-1 w-full h-full relative cursor-default border-2 border-brand-dark overflow-hidden bg-brand-dark shadow-[8px_8px_0_#0A0A0A] p-4 flex items-center justify-center">
+                        <img src="https://github.com/r12azqha/portofolio/blob/main/docs/assets/images/Screenshot%202026-05-06%20081915.png?raw=true" class="w-full h-full object-contain" alt="3D Modeling Project">
                     </div>
                 </div>
 
@@ -814,8 +810,8 @@
                         <i data-lucide="video" class="w-6 h-6 text-brand-purple"></i>
                     </div>
 
-                    <div class="flex-1 w-full h-full relative group cursor-pointer border-2 border-brand-purple overflow-hidden bg-brand-dark shadow-[8px_8px_0_#8F5BFF]">
-                        <img src="https://github.com/r12azqha/portofolio/blob/main/docs/assets/images/zzz_gacha.gif?raw=true" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Mine-imator Project">
+                    <div class="flex-1 w-full h-full relative cursor-default border-2 border-brand-purple overflow-hidden bg-brand-dark shadow-[8px_8px_0_#8F5BFF] p-4 flex items-center justify-center">
+                        <img src="https://github.com/r12azqha/portofolio/blob/main/docs/assets/images/zzz_gacha.gif?raw=true" class="w-full h-full object-contain" alt="Mine-imator Project">
                     </div>
                 </div>
 
@@ -833,8 +829,8 @@
         <section class="slide-wrapper" id="slide-9">
             <div class="slide-content flex flex-col bg-white relative pb-12">
                 
-                <div class="flex-1 w-full relative group cursor-pointer overflow-hidden border-b-2 border-brand-purple">
-                    <img src="https://github.com/r12azqha/portofolio/blob/main/docs/assets/images/petiteile.png?raw=true" alt="Petite Island Fullscreen" class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                <div class="flex-1 w-full relative cursor-default overflow-hidden border-b-2 border-brand-purple">
+                    <img src="https://github.com/r12azqha/portofolio/blob/main/docs/assets/images/petiteile.png?raw=true" alt="Petite Island Fullscreen" class="absolute inset-0 w-full h-full object-cover object-center">
                 </div>
                 
                 <div class="absolute bottom-0 left-0 w-full h-12 bg-brand-purple flex items-center justify-between px-6 shrink-0 border-t-2 border-brand-dark text-brand-yellow z-20">
@@ -880,25 +876,25 @@
                     <div class="font-mono text-xs uppercase tracking-widest text-brand-purple font-bold bg-white px-6 py-2 border-2 border-brand-purple shadow-[4px_4px_0_#8F5BFF] flex items-center gap-2 mb-8">
                         <i data-lucide="scan-line" class="w-4 h-4"></i> VIEW IT ONLINE
                     </div>
-                    
-                    <!-- Contact Box moved here -->
-                    <div class="bg-white border-2 border-brand-purple p-4 shadow-[6px_6px_0_#8F5BFF] z-20 w-auto">
-                        <div class="space-y-2 font-bold text-brand-purple text-sm font-mono flex flex-col items-end">
-                            <div class="flex items-center gap-3">
-                                <i data-lucide="mail" class="w-5 h-5"></i>
-                                <a href="#" class="protected-email hover:underline text-brand-purple"><span>...</span></a>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <i data-lucide="globe" class="w-5 h-5"></i>
-                                <a href="https://12azqha.com" target="_blank" class="hover:underline text-brand-purple">12azqha.com</a>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <img src="https://cdn.simpleicons.org/instagram/8F5BFF" alt="Instagram" class="w-4 h-4" />
-                                <a href="https://instagram.com/r_12k." target="_blank" class="hover:underline text-brand-purple">@r_12k.</a>
-                            </div>
+
+                </div>
+
+                <!-- Contact Box absolute bottom right -->
+                <div class="absolute bottom-[4.5rem] right-8 md:bottom-16 md:right-12 bg-white border-2 border-brand-purple p-4 shadow-[6px_6px_0_#8F5BFF] z-20 w-auto">
+                    <div class="space-y-2 font-bold text-brand-purple text-sm font-mono flex flex-col items-end">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="mail" class="w-5 h-5"></i>
+                            <a href="#" class="protected-email hover:underline text-brand-purple"><span>...</span></a>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="globe" class="w-5 h-5"></i>
+                            <a href="https://12azqha.com" target="_blank" class="hover:underline text-brand-purple">12azqha.com</a>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <img src="https://cdn.simpleicons.org/instagram/8F5BFF" alt="Instagram" class="w-4 h-4" />
+                            <a href="https://instagram.com/r_12k." target="_blank" class="hover:underline text-brand-purple">@r_12k.</a>
                         </div>
                     </div>
-
                 </div>
 
                 <!-- Absolute Footer Strip -->
