@@ -166,6 +166,10 @@
 
         /* --- PDF PRINT OPTIMIZATIONS --- */
         @media print {
+            :root {
+                /* Flips all yellow elements to white instantly during print */
+                --theme-yellow: #FFFFFF; 
+            }
             @page {
                 size: 16in 9in landscape; /* forces 16:9 pdf pages */
                 margin: 0;
@@ -194,6 +198,7 @@
                 width: 100vw !important;
                 height: 100vh !important;
                 aspect-ratio: auto !important;
+                background-color: white !important;
             }
             /* hide UI elements not meant for print */
             .no-print {
@@ -202,7 +207,6 @@
             /* force background colors */
             * {
                 -webkit-print-color-adjust: exact !important;
-                color-adjust: exact !important;
                 print-color-adjust: exact !important;
             }
         }
@@ -219,8 +223,8 @@
         <section class="slide-wrapper" id="slide-1">
             <div class="slide-content bg-blueprint">
                 
-                <!-- The top marquee no-print removed so it shows in header -->
-                <div class="marquee-wrapper bg-brand-purple py-1 border-b-2 border-brand-purple z-20">
+                <!-- The top marquee is hidden on print using no-print -->
+                <div class="marquee-wrapper bg-brand-purple py-1 border-b-2 border-brand-purple z-20 no-print">
                     <div class="marquee-content text-xs font-bold tracking-widest uppercase text-white">
                         <span>R12AZQHA * 3D ARTIST * R12AZQHA * 3D ARTIST * R12AZQHA * 3D ARTIST * R12AZQHA * 3D ARTIST * R12AZQHA * 3D ARTIST * </span>
                     </div>
@@ -497,33 +501,28 @@
                         </svg>
                     </div>
 
-                    <!-- Right: Philosophy & Meaning -->
+                    <!-- Right: Philosophy & Meaning Layout -->
                     <div class="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
-                        <div class="bounding-box border border-brand-purple/50 px-6 py-2 bg-white inline-block mb-8 shadow-[4px_4px_0_#8F5BFF] self-start">
+                        <div class="bounding-box border border-brand-purple/50 px-6 py-2 bg-white inline-block mb-12 shadow-[4px_4px_0_#8F5BFF] self-start">
                             <div class="inner-nodes"></div>
                             <h2 class="text-2xl md:text-3xl font-black tracking-tighter text-brand-purple uppercase">
                                 Visual * Meaning
                             </h2>
                         </div>
 
-                        <div class="space-y-8">
+                        <!-- 3 Column grid for philosophy matching requested layout style -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 border-t-2 border-brand-purple/20">
                             <div>
-                                <h4 class="font-black text-brand-dark text-lg uppercase flex items-center gap-2 mb-2">
-                                    <i data-lucide="type" class="w-5 h-5 text-brand-purple"></i> The Hidden 'r'
-                                </h4>
-                                <p class="text-sm text-gray-800 leading-relaxed font-medium">At first glance, it's just raw geometry, but the negative space carves out a hidden lowercase 'r' for my name. It's about building structure out of the void, making something aggressively brutalist yet entirely personal.</p>
+                                <h4 class="font-bold text-brand-purple text-lg uppercase mb-3">The Hidden 'R'</h4>
+                                <p class="text-[10px] md:text-xs text-gray-800 leading-relaxed font-medium">At its core, it's just raw geometry. But the negative space aggressively carves out a hidden 'r' for my name. It's about building structure out of the void—creating something undeniably brutalist yet entirely mine.</p>
                             </div>
                             <div>
-                                <h4 class="font-black text-brand-dark text-lg uppercase flex items-center gap-2 mb-2">
-                                    <i data-lucide="scan" class="w-5 h-5 text-brand-purple"></i> The Viewport
-                                </h4>
-                                <p class="text-sm text-gray-800 leading-relaxed font-medium">I spend my life inside 3D software. That harsh outer bracket? That's my viewport. It's the literal frame through which I execute my ideas, keeping the chaos of the creative process grounded and focused.</p>
+                                <h4 class="font-bold text-brand-purple text-lg uppercase mb-3">The Viewport</h4>
+                                <p class="text-[10px] md:text-xs text-gray-800 leading-relaxed font-medium">I spend my life inside 3D software. That harsh outer bracket is my viewport. It's the literal frame through which I execute my ideas, anchoring the chaos of the creative process into focused reality.</p>
                             </div>
                             <div>
-                                <h4 class="font-black text-brand-dark text-lg uppercase flex items-center gap-2 mb-2">
-                                    <i data-lucide="split-square-horizontal" class="w-5 h-5 text-brand-purple"></i> Duality of Form
-                                </h4>
-                                <p class="text-sm text-gray-800 leading-relaxed font-medium">Look at the tension between the rigid 90-degree angles and that smooth, sweeping internal curve. It mirrors how I work—pushing the hard, technical limits of 3D modeling while keeping the creative flow completely unconstrained.</p>
+                                <h4 class="font-bold text-brand-purple text-lg uppercase mb-3">Duality</h4>
+                                <p class="text-[10px] md:text-xs text-gray-800 leading-relaxed font-medium">Look at the tension between the rigid angles and the sweeping internal curve. It mirrors how I operate—pushing the absolute technical limits of 3D modeling while keeping the creative flow completely unconstrained.</p>
                             </div>
                         </div>
                     </div>
@@ -609,7 +608,7 @@
                                     <span class="text-[9px] md:text-[10px] font-mono font-bold text-brand-dark uppercase absolute top-2 left-2">#F4F4F5</span>
                                 </div>
                             </div>
-                            <p class="text-[10px] font-mono text-gray-500 uppercase mt-3 tracking-widest text-right">High-Contrast Brutalism</p>
+                            <p class="text-[10px] font-mono text-brand-dark font-bold uppercase mt-3 tracking-widest text-right">I like the color yellow, and I pair it with the complementary color.</p>
                         </div>
 
                     </div>
@@ -626,7 +625,7 @@
         </section>
 
         <!-- SLIDE 5: CONTENTS / FOLDERS -->
-        <section class="slide-wrapper" id="slide-3">
+        <section class="slide-wrapper" id="slide-5">
             <div class="slide-content bg-brand-light flex flex-col relative">
                 
                 <div class="w-full flex justify-center mt-16 mb-16">
@@ -685,13 +684,13 @@
                     <div class="hidden md:flex space-x-6 text-xs font-bold uppercase opacity-90 text-brand-yellow">
                         <span>PORTFOLIO 2026</span>
                     </div>
-                    <span class="text-xs font-mono tracking-widest uppercase">page * 03 / 10</span>
+                    <span class="text-xs font-mono tracking-widest uppercase">page * 05 / 10</span>
                 </div>
             </div>
         </section>
 
-        <!-- SLIDE 4: PROJECTS SHOWCASE (3D MODELING) -->
-        <section class="slide-wrapper" id="slide-4">
+        <!-- SLIDE 6: PROJECTS SHOWCASE (3D MODELING) -->
+        <section class="slide-wrapper" id="slide-6">
             <div class="slide-content flex flex-col bg-brand-purple text-white pb-12">
                 
                 <div class="marquee-wrapper bg-brand-purple py-1 border-b border-white/20 shrink-0">
@@ -704,7 +703,7 @@
                 </div>
 
                 <div class="flex-1 flex flex-col p-8 md:p-12">
-                    <div class="w-full flex justify-between items-center mb-8">
+                    <div class="w-full flex justify-between items-center mb-8 z-10 relative">
                         <i data-lucide="crosshair" class="w-6 h-6 text-brand-yellow"></i>
                         
                         <div class="bounding-box border border-brand-yellow/50 px-8 py-3 bg-brand-purple">
@@ -719,22 +718,8 @@
                         <i data-lucide="crosshair" class="w-6 h-6 text-brand-yellow"></i>
                     </div>
 
-                    <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4 h-full relative group cursor-pointer">
-                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-16 h-16 bg-brand-yellow rounded-full flex items-center justify-center text-brand-purple shadow-xl group-hover:scale-110 transition-transform">
-                            <i data-lucide="play" class="w-6 h-6 fill-current ml-1"></i>
-                        </div>
-
-                        <div class="bg-gray-300 w-full h-full border-2 border-brand-dark overflow-hidden relative">
-                            <div class="absolute inset-0 flex items-center justify-center bg-gray-200">
-                                <span class="text-gray-500 font-mono text-sm uppercase">[ solid view ]</span>
-                            </div>
-                        </div>
-
-                        <div class="bg-brand-dark w-full h-full border-2 border-brand-dark overflow-hidden relative">
-                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 text-gray-400">
-                                <span class="font-mono text-sm uppercase">[ final render ]</span>
-                            </div>
-                        </div>
+                    <div class="flex-1 w-full h-full relative group cursor-pointer border-2 border-brand-dark overflow-hidden bg-brand-dark shadow-[8px_8px_0_#0A0A0A]">
+                        <img src="https://github.com/r12azqha/portofolio/blob/main/docs/assets/images/Screenshot%202026-05-06%20081915.png?raw=true" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="3D Modeling Project">
                     </div>
                 </div>
 
@@ -743,16 +728,16 @@
                     <div class="hidden md:flex space-x-6 text-xs font-bold uppercase opacity-90 text-brand-yellow">
                         <span>PORTFOLIO 2026</span>
                     </div>
-                    <span class="text-xs font-mono tracking-widest uppercase">page * 04 / 10</span>
+                    <span class="text-xs font-mono tracking-widest uppercase">page * 06 / 10</span>
                 </div>
             </div>
         </section>
 
-        <!-- SLIDE 5: PROJECTS SHOWCASE (PERSONAL PROJECTS) -->
-        <section class="slide-wrapper" id="slide-5">
+        <!-- SLIDE 7: PROJECTS SHOWCASE (PERSONAL PROJECTS) -->
+        <section class="slide-wrapper" id="slide-7">
             <div class="slide-content flex flex-col bg-white text-brand-purple pb-12">
                 
-                <div class="marquee-wrapper bg-white py-1 border-b-2 border-brand-purple shrink-0">
+                <div class="marquee-wrapper bg-white py-1 border-b-2 border-brand-purple shrink-0 z-20">
                     <div class="marquee-content text-xs font-bold tracking-widest uppercase">
                         <span>PERSONAL PROJECTS * 3D ARTIST * PERSONAL PROJECTS * 3D ARTIST * PERSONAL PROJECTS * 3D ARTIST *</span>
                     </div>
@@ -762,7 +747,7 @@
                 </div>
 
                 <div class="flex-1 flex flex-col p-8 md:p-12">
-                    <div class="w-full flex justify-between items-center mb-8">
+                    <div class="w-full flex justify-between items-center mb-8 z-10 relative">
                         <i data-lucide="folder" class="w-6 h-6 text-brand-purple"></i>
                         
                         <div class="bounding-box border border-brand-purple/50 px-8 py-3 bg-brand-light">
@@ -777,21 +762,15 @@
                         <i data-lucide="folder" class="w-6 h-6 text-brand-purple"></i>
                     </div>
 
-                    <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4 h-full relative group cursor-pointer">
-                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-16 h-16 bg-brand-purple rounded-full flex items-center justify-center text-white shadow-xl group-hover:scale-110 transition-transform">
-                            <i data-lucide="play" class="w-6 h-6 fill-current ml-1"></i>
+                    <div class="flex-1 grid grid-cols-1 md:grid-cols-3 gap-4 h-full relative">
+                        <div class="w-full h-full border-2 border-brand-purple overflow-hidden relative group cursor-pointer bg-brand-purple shadow-[4px_4px_0_#8F5BFF]">
+                             <img src="https://github.com/r12azqha/portofolio/blob/main/docs/assets/images/BILAL107XXX-a.png?raw=true" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Personal Project 1">
                         </div>
-
-                        <div class="bg-gray-300 w-full h-full border-2 border-brand-purple overflow-hidden relative">
-                            <div class="absolute inset-0 flex items-center justify-center bg-gray-200">
-                                <span class="text-gray-500 font-mono text-sm uppercase">[ wireframe ]</span>
-                            </div>
+                        <div class="w-full h-full border-2 border-brand-purple overflow-hidden relative group cursor-pointer bg-brand-purple shadow-[4px_4px_0_#8F5BFF]">
+                             <img src="https://github.com/r12azqha/portofolio/blob/main/docs/assets/images/Normalplayer12M-d.png?raw=true" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Personal Project 2">
                         </div>
-
-                        <div class="bg-brand-dark w-full h-full border-2 border-brand-purple overflow-hidden relative">
-                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 text-gray-400">
-                                <span class="font-mono text-sm uppercase">[ final render ]</span>
-                            </div>
+                        <div class="w-full h-full border-2 border-brand-purple overflow-hidden relative group cursor-pointer bg-brand-purple shadow-[4px_4px_0_#8F5BFF]">
+                             <img src="https://github.com/r12azqha/portofolio/blob/main/docs/assets/images/bewburg-e.png?raw=true" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Personal Project 3">
                         </div>
                     </div>
                 </div>
@@ -801,16 +780,16 @@
                     <div class="hidden md:flex space-x-6 text-xs font-bold uppercase opacity-90 text-brand-yellow">
                         <span>PORTFOLIO 2026</span>
                     </div>
-                    <span class="text-xs font-mono tracking-widest uppercase">page * 05 / 10</span>
+                    <span class="text-xs font-mono tracking-widest uppercase">page * 07 / 10</span>
                 </div>
             </div>
         </section>
 
-        <!-- SLIDE 6: PROJECTS SHOWCASE (MINE-IMATOR RENDERS) -->
-        <section class="slide-wrapper" id="slide-6">
+        <!-- SLIDE 8: PROJECTS SHOWCASE (MINE-IMATOR RENDERS) -->
+        <section class="slide-wrapper" id="slide-8">
             <div class="slide-content flex flex-col bg-brand-yellow text-brand-purple pb-12">
                 
-                <div class="marquee-wrapper bg-brand-yellow py-1 border-b-2 border-brand-purple shrink-0">
+                <div class="marquee-wrapper bg-brand-yellow py-1 border-b-2 border-brand-purple shrink-0 z-20">
                     <div class="marquee-content text-xs font-bold tracking-widest uppercase">
                         <span>EXPLORING 3D ENVIRONMENT * EXPLORING 3D ENVIRONMENT * EXPLORING 3D ENVIRONMENT * EXPLORING 3D ENVIRONMENT *</span>
                     </div>
@@ -820,7 +799,7 @@
                 </div>
 
                 <div class="flex-1 flex flex-col p-8 md:p-12">
-                    <div class="w-full flex justify-between items-center mb-8">
+                    <div class="w-full flex justify-between items-center mb-8 z-10 relative">
                         <i data-lucide="video" class="w-6 h-6 text-brand-purple"></i>
                         
                         <div class="bounding-box border border-brand-purple/50 px-8 py-3 bg-white">
@@ -835,70 +814,11 @@
                         <i data-lucide="video" class="w-6 h-6 text-brand-purple"></i>
                     </div>
 
-                    <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4 h-full relative group cursor-pointer">
-                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-16 h-16 bg-brand-purple rounded-full flex items-center justify-center text-brand-yellow shadow-xl group-hover:scale-110 transition-transform">
-                            <i data-lucide="play" class="w-6 h-6 fill-current ml-1"></i>
-                        </div>
-
-                        <div class="bg-gray-300 w-full h-full border-2 border-brand-purple overflow-hidden relative">
-                            <div class="absolute inset-0 flex items-center justify-center bg-gray-200">
-                                <span class="text-gray-500 font-mono text-sm uppercase">[ raw pass ]</span>
-                            </div>
-                        </div>
-
-                        <div class="bg-brand-dark w-full h-full border-2 border-brand-purple overflow-hidden relative">
-                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 text-gray-400">
-                                <span class="font-mono text-sm uppercase">[ comp render ]</span>
-                            </div>
-                        </div>
+                    <div class="flex-1 w-full h-full relative group cursor-pointer border-2 border-brand-purple overflow-hidden bg-brand-dark shadow-[8px_8px_0_#8F5BFF]">
+                        <img src="https://github.com/r12azqha/portofolio/blob/main/docs/assets/images/zzz_gacha.gif?raw=true" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Mine-imator Project">
                     </div>
                 </div>
 
-                <div class="absolute bottom-0 left-0 w-full h-12 bg-brand-purple flex items-center justify-between px-6 shrink-0 border-t-2 border-brand-dark text-brand-yellow z-20">
-                    <span class="text-xl font-black uppercase">R12AZQHA</span>
-                    <div class="hidden md:flex space-x-6 text-xs font-bold uppercase opacity-90 text-brand-yellow">
-                        <span>PORTFOLIO 2026</span>
-                    </div>
-                    <span class="text-xs font-mono tracking-widest uppercase">page * 06 / 10</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- SLIDE 7: MODULAR PHOTO (1 IMAGE) -->
-        <section class="slide-wrapper" id="slide-7">
-            <div class="slide-content flex flex-col bg-white relative pb-12">
-                
-                <div class="flex-1 w-full relative group cursor-pointer overflow-hidden border-b-2 border-brand-purple">
-                    <img src="https://github.com/r12azqha/portofolio/blob/main/docs/assets/images/petiteile.png?raw=true" alt="Petite Island Fullscreen" class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
-                </div>
-                
-                <div class="absolute bottom-0 left-0 w-full h-12 bg-brand-purple flex items-center justify-between px-6 shrink-0 border-t-2 border-brand-dark text-brand-yellow z-20">
-                    <span class="text-xl font-black uppercase">R12AZQHA</span>
-                    <div class="hidden md:flex space-x-6 text-xs font-bold uppercase opacity-90 text-brand-yellow">
-                        <span>PORTFOLIO 2026</span>
-                    </div>
-                    <span class="text-xs font-mono tracking-widest uppercase">page * 07 / 10</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- SLIDE 8: MODULAR PHOTO (2 IMAGES) -->
-        <section class="slide-wrapper" id="slide-8">
-            <div class="slide-content flex flex-col bg-white relative pb-12">
-                
-                <div class="flex-1 w-full grid grid-cols-2">
-                    <div class="relative border-r-2 border-brand-purple group cursor-pointer">
-                        <div class="absolute inset-0 flex items-center justify-center bg-gray-200">
-                            <span class="text-gray-500 font-mono text-sm uppercase">[ Photo 1 ]</span>
-                        </div>
-                    </div>
-                    <div class="relative group cursor-pointer">
-                        <div class="absolute inset-0 flex items-center justify-center bg-gray-300">
-                            <span class="text-gray-500 font-mono text-sm uppercase">[ Photo 2 ]</span>
-                        </div>
-                    </div>
-                </div>
-                
                 <div class="absolute bottom-0 left-0 w-full h-12 bg-brand-purple flex items-center justify-between px-6 shrink-0 border-t-2 border-brand-dark text-brand-yellow z-20">
                     <span class="text-xl font-black uppercase">R12AZQHA</span>
                     <div class="hidden md:flex space-x-6 text-xs font-bold uppercase opacity-90 text-brand-yellow">
@@ -909,26 +829,12 @@
             </div>
         </section>
 
-        <!-- SLIDE 9: MODULAR PHOTO (3 IMAGES) -->
+        <!-- SLIDE 9: MODULAR PHOTO (1 IMAGE) -->
         <section class="slide-wrapper" id="slide-9">
             <div class="slide-content flex flex-col bg-white relative pb-12">
                 
-                <div class="flex-1 w-full grid grid-cols-3">
-                    <div class="relative border-r-2 border-brand-purple group cursor-pointer">
-                        <div class="absolute inset-0 flex items-center justify-center bg-gray-200">
-                            <span class="text-gray-500 font-mono text-sm uppercase">[ Photo 1 ]</span>
-                        </div>
-                    </div>
-                    <div class="relative border-r-2 border-brand-purple group cursor-pointer">
-                        <div class="absolute inset-0 flex items-center justify-center bg-gray-300">
-                            <span class="text-gray-500 font-mono text-sm uppercase">[ Photo 2 ]</span>
-                        </div>
-                    </div>
-                    <div class="relative group cursor-pointer">
-                        <div class="absolute inset-0 flex items-center justify-center bg-gray-200">
-                            <span class="text-gray-500 font-mono text-sm uppercase">[ Photo 3 ]</span>
-                        </div>
-                    </div>
+                <div class="flex-1 w-full relative group cursor-pointer overflow-hidden border-b-2 border-brand-purple">
+                    <img src="https://github.com/r12azqha/portofolio/blob/main/docs/assets/images/petiteile.png?raw=true" alt="Petite Island Fullscreen" class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
                 </div>
                 
                 <div class="absolute bottom-0 left-0 w-full h-12 bg-brand-purple flex items-center justify-between px-6 shrink-0 border-t-2 border-brand-dark text-brand-yellow z-20">
@@ -974,25 +880,25 @@
                     <div class="font-mono text-xs uppercase tracking-widest text-brand-purple font-bold bg-white px-6 py-2 border-2 border-brand-purple shadow-[4px_4px_0_#8F5BFF] flex items-center gap-2 mb-8">
                         <i data-lucide="scan-line" class="w-4 h-4"></i> VIEW IT ONLINE
                     </div>
-
-                </div>
-
-                <!-- Contact Box moved absolute bottom right inside slide-content -->
-                <div class="absolute bottom-[4.5rem] right-8 md:bottom-16 md:right-12 bg-white border-2 border-brand-purple p-4 shadow-[6px_6px_0_#8F5BFF] z-20 w-auto">
-                    <div class="space-y-2 font-bold text-brand-purple text-sm font-mono flex flex-col items-end">
-                        <div class="flex items-center gap-3">
-                            <i data-lucide="mail" class="w-5 h-5"></i>
-                            <a href="#" class="protected-email hover:underline text-brand-purple"><span>...</span></a>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <i data-lucide="globe" class="w-5 h-5"></i>
-                            <a href="https://12azqha.com" target="_blank" class="hover:underline text-brand-purple">12azqha.com</a>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <img src="https://cdn.simpleicons.org/instagram/8F5BFF" alt="Instagram" class="w-4 h-4" />
-                            <a href="https://instagram.com/r_12k." target="_blank" class="hover:underline text-brand-purple">@r_12k.</a>
+                    
+                    <!-- Contact Box moved here -->
+                    <div class="bg-white border-2 border-brand-purple p-4 shadow-[6px_6px_0_#8F5BFF] z-20 w-auto">
+                        <div class="space-y-2 font-bold text-brand-purple text-sm font-mono flex flex-col items-end">
+                            <div class="flex items-center gap-3">
+                                <i data-lucide="mail" class="w-5 h-5"></i>
+                                <a href="#" class="protected-email hover:underline text-brand-purple"><span>...</span></a>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <i data-lucide="globe" class="w-5 h-5"></i>
+                                <a href="https://12azqha.com" target="_blank" class="hover:underline text-brand-purple">12azqha.com</a>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <img src="https://cdn.simpleicons.org/instagram/8F5BFF" alt="Instagram" class="w-4 h-4" />
+                                <a href="https://instagram.com/r_12k." target="_blank" class="hover:underline text-brand-purple">@r_12k.</a>
+                            </div>
                         </div>
                     </div>
+
                 </div>
 
                 <!-- Absolute Footer Strip -->
