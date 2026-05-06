@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>r12azqha | 3D Artist Portfolio 2026</title>
+    
+    <!-- Added Google Fonts for Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,500;1,700;1,900&display=swap" rel="stylesheet">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
@@ -13,11 +19,14 @@
                     fontFamily: {
                         sans: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Display"', '"SF Pro Text"', 'Helvetica', 'Arial', 'sans-serif'],
                         mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', "Liberation Mono", "Courier New", 'monospace'],
+                        /* Added custom font family for the typemark */
+                        logotype: ['Montserrat', 'sans-serif'],
                     },
                     colors: {
                         brand: {
                             purple: '#8F5BFF', 
-                            yellow: '#FFE25B', 
+                            /* Mapped to CSS Variable for scalable print overriding */
+                            yellow: 'var(--theme-yellow)', 
                             dark: '#0A0A0A',
                             light: '#F4F4F5'
                         }
@@ -27,6 +36,11 @@
         }
     </script>
     <style>
+        /* CSS Variables */
+        :root {
+            --theme-yellow: #FFE25B;
+        }
+
         /* base setup for scroll snapping */
         html, body {
             margin: 0;
@@ -41,6 +55,8 @@
             overflow-y: scroll;
             scroll-snap-type: y mandatory;
             scroll-behavior: smooth;
+            position: relative;
+            z-index: 1; 
         }
 
         .slide-wrapper {
@@ -54,12 +70,11 @@
             padding: 1rem;
         }
 
-        /* 16:9 aspect ratio bounding box */
+        /* 16:9 aspect ratio bounding box - SOLID BACKGROUNDS NO OPACITY */
         .slide-content {
             width: 100%;
             height: 100%;
             max-width: 1600px;
-            background: white;
             position: relative;
             overflow: hidden;
             border: 2px solid #8F5BFF;
@@ -85,16 +100,41 @@
             background-size: 40px 40px;
             background-position: center center;
         }
+        
+        /* purple squares grid pattern for last slide */
+        .bg-grid-purple {
+            background-color: var(--theme-yellow);
+            background-image: 
+                linear-gradient(rgba(143, 91, 255, 0.25) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(143, 91, 255, 0.25) 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: center center;
+        }
 
-        /* marquee animation */
+        /* Seamless Marquee Animation */
+        .marquee-wrapper {
+            display: flex;
+            overflow: hidden;
+            white-space: nowrap;
+            width: 100%;
+        }
+        .marquee-content {
+            display: flex;
+            flex-shrink: 0;
+            min-width: 100%;
+            animation: marquee 20s linear infinite;
+            justify-content: space-around;
+        }
+        .marquee-content.reverse {
+            animation: marquee-reverse 20s linear infinite;
+        }
         @keyframes marquee {
             0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            100% { transform: translateX(-100%); }
         }
-        .animate-marquee {
-            display: flex;
-            width: 200%;
-            animation: marquee 15s linear infinite;
+        @keyframes marquee-reverse {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(0); }
         }
 
         /* brutalist bounding box decoration */
@@ -135,6 +175,9 @@
                 overflow: visible !important;
                 background-color: white !important;
             }
+            .global-bg {
+                display: none !important;
+            }
             .slide-wrapper {
                 height: 100vh !important;
                 width: 100vw !important;
@@ -159,12 +202,16 @@
             /* force background colors */
             * {
                 -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
                 print-color-adjust: exact !important;
             }
         }
     </style>
 </head>
-<body class="text-brand-dark antialiased">
+<body class="text-brand-dark antialiased bg-gray-200">
+
+    <!-- Global Fixed Background Image (Hardware Accelerated, 12% Opacity, Slight Blur) -->
+    <div class="global-bg fixed inset-0 z-0 no-print pointer-events-none bg-[url('https://github.com/r12azqha/portofolio/blob/main/docs/assets/images/petiteile.png?raw=true')] bg-cover bg-center opacity-[0.12] blur-[2px]" style="transform: translateZ(0) scale(1.05);"></div>
 
     <main class="scroll-container">
 
@@ -172,9 +219,12 @@
         <section class="slide-wrapper" id="slide-1">
             <div class="slide-content bg-blueprint">
                 
-                <div class="bg-brand-purple text-white overflow-hidden py-1 border-b-2 border-brand-purple z-20">
-                    <div class="animate-marquee whitespace-nowrap text-xs font-bold tracking-widest uppercase">
+                <!-- The top marquee no-print removed so it shows in header -->
+                <div class="marquee-wrapper bg-brand-purple py-1 border-b-2 border-brand-purple z-20">
+                    <div class="marquee-content text-xs font-bold tracking-widest uppercase text-white">
                         <span>R12AZQHA * 3D ARTIST * R12AZQHA * 3D ARTIST * R12AZQHA * 3D ARTIST * R12AZQHA * 3D ARTIST * R12AZQHA * 3D ARTIST * </span>
+                    </div>
+                    <div class="marquee-content text-xs font-bold tracking-widest uppercase text-white">
                         <span>R12AZQHA * 3D ARTIST * R12AZQHA * 3D ARTIST * R12AZQHA * 3D ARTIST * R12AZQHA * 3D ARTIST * R12AZQHA * 3D ARTIST * </span>
                     </div>
                 </div>
@@ -188,12 +238,8 @@
                         <div class="absolute -bottom-1.5 -right-1.5 w-3 h-3 bg-brand-purple"></div>
                     </div>
 
-                    <!-- abstract 3d placeholder blobs -->
-                    <div class="absolute top-1/4 left-1/4 w-32 h-32 bg-brand-yellow border-2 border-brand-purple rounded-full mix-blend-multiply opacity-80 blur-xl animate-pulse"></div>
-                    <div class="absolute bottom-1/4 right-1/4 w-40 h-40 bg-brand-purple border-2 border-brand-purple mix-blend-multiply opacity-20 blur-xl"></div>
-
                     <!-- main title -->
-                    <div class="z-10 text-center bounding-box border border-brand-purple/30 p-10 bg-white/80 backdrop-blur-sm">
+                    <div class="z-10 text-center bounding-box border border-brand-purple/30 p-10 bg-white shadow-[8px_8px_0_#8F5BFF]">
                         <div class="inner-nodes"></div>
                         <h2 class="text-brand-purple font-mono text-sm md:text-base font-bold tracking-widest mb-4 uppercase">welcome to my portfolio</h2>
                         <h1 class="text-6xl md:text-8xl lg:text-[120px] font-black tracking-tighter text-brand-yellow uppercase" style="text-shadow: 4px 4px 0px #8F5BFF, -1px -1px 0 #8F5BFF, 1px -1px 0 #8F5BFF, -1px 1px 0 #8F5BFF, 1px 1px 0 #8F5BFF;">
@@ -210,9 +256,11 @@
                     </div>
                 </div>
 
-                <div class="bg-brand-yellow text-brand-purple overflow-hidden py-1 border-t-2 border-brand-purple z-20">
-                    <div class="animate-marquee whitespace-nowrap text-xs font-bold tracking-widest uppercase" style="animation-direction: reverse;">
+                <div class="marquee-wrapper bg-brand-yellow py-1 border-t-2 border-brand-purple z-20">
+                    <div class="marquee-content reverse text-xs font-bold tracking-widest uppercase text-brand-purple">
                         <span>2026 PORTFOLIO * 2026 PORTFOLIO * 2026 PORTFOLIO * 2026 PORTFOLIO * 2026 PORTFOLIO * 2026 PORTFOLIO *</span>
+                    </div>
+                    <div class="marquee-content reverse text-xs font-bold tracking-widest uppercase text-brand-purple">
                         <span>2026 PORTFOLIO * 2026 PORTFOLIO * 2026 PORTFOLIO * 2026 PORTFOLIO * 2026 PORTFOLIO * 2026 PORTFOLIO *</span>
                     </div>
                 </div>
@@ -244,7 +292,7 @@
                             <div class="flex items-center gap-3 text-sm font-medium">
                                 <i data-lucide="mail" class="w-5 h-5 text-brand-purple"></i>
                                 <!-- Email populated by JS -->
-                                <a href="#" class="protected-email hover:underline text-brand-dark">...</a>
+                                <a href="#" class="protected-email hover:underline text-brand-dark"><span>...</span></a>
                             </div>
                             <div class="flex items-center gap-3 text-sm font-medium">
                                 <img src="https://cdn.simpleicons.org/instagram/8F5BFF" alt="Instagram" class="w-5 h-5" />
@@ -258,7 +306,7 @@
                     </div>
 
                     <!-- RIGHT COLUMN: 2x2 Grid Layout -->
-                    <div class="w-full md:w-2/3 p-8 md:p-12 overflow-y-auto">
+                    <div class="w-full md:w-2/3 p-8 md:p-12 overflow-y-auto pb-16">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12">
                             
                             <!-- ROW 1, COL 1: About Me -->
@@ -268,7 +316,8 @@
                                </h3>
                                <div class="text-sm text-gray-800 leading-relaxed space-y-4">
                                    <p>Hi, I'm Raja Razqha Sutan Rabani — a Game Design student with a strong interest in 3D Art and becoming a professional 3D Artist.</p>
-                                   <p>I'm constantly learning, experimenting, and refining my art style to express my creativity in a clear and memorable way. I aim to create optimized, engine-ready assets without compromising on aesthetic quality.</p>
+                                   <p>Through my studies, I've explored various areas such as branding, illustration, animation, and 3D modeling, which allow me to understand design from multiple perspectives.</p>
+                                   <p>I aim to create designs that are not only visually appealing but also meaningful - designs that connect ideas with emotions.</p>
                                </div>
                             </div>
 
@@ -409,17 +458,178 @@
                     </div>
                 </div>
 
-                <div class="w-full h-8 bg-brand-purple flex items-center px-4 shrink-0 mt-auto">
-                    <span class="text-white text-[10px] font-mono tracking-widest uppercase">page * 02 / 05</span>
+                <div class="absolute bottom-0 left-0 w-full h-12 bg-brand-purple flex items-center justify-between px-6 shrink-0 border-t-2 border-brand-dark text-brand-yellow z-20">
+                    <span class="text-xl font-black uppercase">R12AZQHA</span>
+                    <div class="hidden md:flex space-x-6 text-xs font-bold uppercase opacity-90 text-brand-yellow">
+                        <span>PORTFOLIO 2026</span>
+                    </div>
+                    <span class="text-xs font-mono tracking-widest uppercase">page * 02 / 10</span>
                 </div>
             </div>
         </section>
 
-        <!-- SLIDE 3: CONTENTS / FOLDERS -->
-        <section class="slide-wrapper" id="slide-3">
-            <div class="slide-content bg-brand-light p-8 flex flex-col items-center justify-center">
+        <!-- SLIDE 3: BRAND IDENTITY (THE MARK) -->
+        <section class="slide-wrapper">
+            <div class="slide-content bg-white flex flex-col relative">
                 
-                <div class="w-full flex justify-center mb-16">
+                <div class="marquee-wrapper bg-brand-purple py-1 border-b-2 border-brand-purple shrink-0 z-20">
+                    <div class="marquee-content text-xs font-bold tracking-widest uppercase text-white">
+                        <span>BRAND IDENTITY * THE MARK * BRAND IDENTITY * THE MARK * BRAND IDENTITY * THE MARK *</span>
+                    </div>
+                    <div class="marquee-content text-xs font-bold tracking-widest uppercase text-white">
+                        <span>BRAND IDENTITY * THE MARK * BRAND IDENTITY * THE MARK * BRAND IDENTITY * THE MARK *</span>
+                    </div>
+                </div>
+
+                <div class="flex-1 flex flex-col md:flex-row h-full">
+                    
+                    <!-- Left: The Mark Display -->
+                    <div class="w-full md:w-1/2 p-8 md:p-12 border-b-2 md:border-b-0 md:border-r-2 border-brand-purple flex flex-col justify-center items-center bg-brand-light relative">
+                        <div class="absolute top-4 left-4 text-[10px] font-mono font-bold text-brand-purple uppercase bg-white px-2 py-1 border border-brand-purple shadow-[2px_2px_0_#8F5BFF]">
+                            Primary Mark
+                        </div>
+                        
+                        <!-- Raw SVG Injected -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1030 1018" class="w-2/3 max-w-[300px] text-brand-dark drop-shadow-[8px_8px_0_#8F5BFF] hover:translate-x-1 hover:translate-y-1 hover:drop-shadow-[4px_4px_0_#8F5BFF] transition-all">
+                            <g>
+                                <path d="M 0.00 509.00 L 0.00 0.00 L 137.50 0.00 L 275.00 0.00 L 275.00 362.00 L 275.00 724.00 L 652.50 724.00 L 1030.00 724.00 L 1030.00 871.00 L 1030.00 1018.00 L 515.00 1018.00 L 0.00 1018.00 L 0.00 509.00 ZM 428.35 716.75 C428.09,716.34 428.78,716.00 429.87,716.00 C430.97,716.00 438.97,713.70 447.66,710.88 C545.15,679.32 625.58,617.76 677.84,534.70 C711.58,481.07 733.44,406.80 738.97,327.00 C739.53,319.02 739.98,308.34 739.99,303.25 L 740.00 294.00 L 884.59 294.00 L 1029.19 294.00 L 1028.52 303.75 C1019.73,432.27 992.14,537.26 941.08,636.50 C926.77,664.31 900.08,709.80 894.59,715.74 C893.68,716.73 844.80,717.04 661.13,717.24 C533.35,717.38 428.60,717.16 428.35,716.75 ZM 284.00 143.50 L 284.00 0.00 L 657.00 0.00 L 1030.00 0.00 L 1030.00 143.50 L 1030.00 287.00 L 657.00 287.00 L 284.00 287.00 L 284.00 143.50 Z" fill="currentColor"/>
+                            </g>
+                        </svg>
+                    </div>
+
+                    <!-- Right: Philosophy & Meaning -->
+                    <div class="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
+                        <div class="bounding-box border border-brand-purple/50 px-6 py-2 bg-white inline-block mb-8 shadow-[4px_4px_0_#8F5BFF] self-start">
+                            <div class="inner-nodes"></div>
+                            <h2 class="text-2xl md:text-3xl font-black tracking-tighter text-brand-purple uppercase">
+                                Visual * Meaning
+                            </h2>
+                        </div>
+
+                        <div class="space-y-8">
+                            <div>
+                                <h4 class="font-black text-brand-dark text-lg uppercase flex items-center gap-2 mb-2">
+                                    <i data-lucide="scan" class="w-5 h-5 text-brand-purple"></i> The Viewport
+                                </h4>
+                                <p class="text-sm text-gray-800 leading-relaxed font-medium">The harsh outer bracket mimics a camera frame or a 3D software viewport. It represents my perspective and lens as a 3D artist, framing the subject with precision.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-black text-brand-dark text-lg uppercase flex items-center gap-2 mb-2">
+                                    <i data-lucide="split-square-horizontal" class="w-5 h-5 text-brand-purple"></i> Duality of Form
+                                </h4>
+                                <p class="text-sm text-gray-800 leading-relaxed font-medium">The contrast between the rigid 90-degree outer angles and the smooth internal curve represents the intersection of technical execution (hard-surface modeling) and creative fluidity.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-black text-brand-dark text-lg uppercase flex items-center gap-2 mb-2">
+                                    <i data-lucide="type" class="w-5 h-5 text-brand-purple"></i> The Hidden 'r'
+                                </h4>
+                                <p class="text-sm text-gray-800 leading-relaxed font-medium">Using aggressive negative space, the geometry subtly constructs an abstract lowercase 'r' for "r12azqha". It's structural, heavy, and leaves an immediate brutalist impression.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="absolute bottom-0 left-0 w-full h-12 bg-brand-purple flex items-center justify-between px-6 shrink-0 border-t-2 border-brand-dark text-brand-yellow z-20">
+                    <span class="text-xl font-black uppercase">R12AZQHA</span>
+                    <div class="hidden md:flex space-x-6 text-xs font-bold uppercase opacity-90 text-brand-yellow">
+                        <span>PORTFOLIO 2026</span>
+                    </div>
+                    <span class="text-xs font-mono tracking-widest uppercase">page * 03 / 10</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 4: BRAND IDENTITY (THE SYSTEM) -->
+        <section class="slide-wrapper">
+            <div class="slide-content bg-white flex flex-col relative">
+                
+                <div class="marquee-wrapper bg-brand-yellow py-1 border-b-2 border-brand-purple shrink-0 z-20">
+                    <div class="marquee-content reverse text-xs font-bold tracking-widest uppercase text-brand-purple">
+                        <span>THE LOCKUP & SYSTEM * THE LOCKUP & SYSTEM * THE LOCKUP & SYSTEM * THE LOCKUP & SYSTEM *</span>
+                    </div>
+                    <div class="marquee-content reverse text-xs font-bold tracking-widest uppercase text-brand-purple">
+                        <span>THE LOCKUP & SYSTEM * THE LOCKUP & SYSTEM * THE LOCKUP & SYSTEM * THE LOCKUP & SYSTEM *</span>
+                    </div>
+                </div>
+
+                <div class="flex-1 flex flex-col p-8 md:p-12 overflow-y-auto">
+                    
+                    <!-- Top: Live DOM Lockup instead of an image -->
+                    <div class="w-full flex flex-col items-center justify-center border-2 border-brand-purple bg-white shadow-[8px_8px_0_#8F5BFF] p-8 md:p-16 mb-12 relative">
+                        <div class="absolute top-4 left-4 text-[10px] font-mono font-bold text-brand-purple uppercase bg-brand-yellow px-2 py-1 border border-brand-purple">
+                            Primary Lockup
+                        </div>
+                        
+                        <div class="flex items-center gap-6 md:gap-10 hover:scale-105 transition-transform cursor-default">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1030 1018" class="w-16 md:w-32 text-brand-dark">
+                                <g>
+                                    <path d="M 0.00 509.00 L 0.00 0.00 L 137.50 0.00 L 275.00 0.00 L 275.00 362.00 L 275.00 724.00 L 652.50 724.00 L 1030.00 724.00 L 1030.00 871.00 L 1030.00 1018.00 L 515.00 1018.00 L 0.00 1018.00 L 0.00 509.00 ZM 428.35 716.75 C428.09,716.34 428.78,716.00 429.87,716.00 C430.97,716.00 438.97,713.70 447.66,710.88 C545.15,679.32 625.58,617.76 677.84,534.70 C711.58,481.07 733.44,406.80 738.97,327.00 C739.53,319.02 739.98,308.34 739.99,303.25 L 740.00 294.00 L 884.59 294.00 L 1029.19 294.00 L 1028.52 303.75 C1019.73,432.27 992.14,537.26 941.08,636.50 C926.77,664.31 900.08,709.80 894.59,715.74 C893.68,716.73 844.80,717.04 661.13,717.24 C533.35,717.38 428.60,717.16 428.35,716.75 ZM 284.00 143.50 L 284.00 0.00 L 657.00 0.00 L 1030.00 0.00 L 1030.00 143.50 L 1030.00 287.00 L 657.00 287.00 L 284.00 287.00 L 284.00 143.50 Z" fill="currentColor"/>
+                                </g>
+                            </svg>
+                            <span class="font-logotype italic text-5xl md:text-[110px] font-black tracking-tighter text-brand-dark pt-2">r12azqha</span>
+                        </div>
+                    </div>
+
+                    <!-- Bottom: System Split -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 flex-1">
+                        
+                        <!-- Typography -->
+                        <div>
+                            <h3 class="text-xl font-black text-brand-purple uppercase mb-4 border-b-2 border-brand-purple/20 pb-2">
+                                Typography
+                            </h3>
+                            <p class="text-sm text-gray-800 leading-relaxed font-medium mb-6">
+                                The logotype utilizes a stark, geometric sans-serif approach. Kept entirely lowercase, it strips away unnecessary hierarchy to focus on raw data. The italicization creates forward momentum, balancing the static weight of the mark.
+                            </p>
+                            <div class="flex gap-4 items-center">
+                                <div class="text-6xl font-logotype font-black italic tracking-tighter text-brand-dark">Aa</div>
+                                <div class="text-xs font-mono uppercase text-gray-500">
+                                    Primary Logotype Font<br>
+                                    <span class="text-brand-dark font-bold text-sm">Montserrat Italic</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Color Palette -->
+                        <div>
+                            <h3 class="text-xl font-black text-brand-purple uppercase mb-4 border-b-2 border-brand-purple/20 pb-2">
+                                Color System
+                            </h3>
+                            <div class="grid grid-cols-4 border-2 border-brand-dark h-24 shadow-[4px_4px_0_#0A0A0A]">
+                                <div class="bg-brand-purple h-full flex items-end p-2 border-r-2 border-brand-dark relative group">
+                                    <span class="text-[9px] md:text-[10px] font-mono font-bold text-white uppercase absolute top-2 left-2">#8F5BFF</span>
+                                </div>
+                                <div class="bg-brand-yellow h-full flex items-end p-2 border-r-2 border-brand-dark relative group">
+                                    <span class="text-[9px] md:text-[10px] font-mono font-bold text-brand-dark uppercase absolute top-2 left-2">#FFE25B</span>
+                                </div>
+                                <div class="bg-brand-dark h-full flex items-end p-2 border-r-2 border-brand-dark relative group">
+                                    <span class="text-[9px] md:text-[10px] font-mono font-bold text-white uppercase absolute top-2 left-2">#0A0A0A</span>
+                                </div>
+                                <div class="bg-brand-light h-full flex items-end p-2 relative group">
+                                    <span class="text-[9px] md:text-[10px] font-mono font-bold text-brand-dark uppercase absolute top-2 left-2">#F4F4F5</span>
+                                </div>
+                            </div>
+                            <p class="text-[10px] font-mono text-gray-500 uppercase mt-3 tracking-widest text-right">High-Contrast Brutalism</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="absolute bottom-0 left-0 w-full h-12 bg-brand-purple flex items-center justify-between px-6 shrink-0 border-t-2 border-brand-dark text-brand-yellow z-20">
+                    <span class="text-xl font-black uppercase">R12AZQHA</span>
+                    <div class="hidden md:flex space-x-6 text-xs font-bold uppercase opacity-90 text-brand-yellow">
+                        <span>PORTFOLIO 2026</span>
+                    </div>
+                    <span class="text-xs font-mono tracking-widest uppercase">page * 04 / 10</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 5: CONTENTS / FOLDERS -->
+        <section class="slide-wrapper" id="slide-3">
+            <div class="slide-content bg-brand-light flex flex-col relative">
+                
+                <div class="w-full flex justify-center mt-16 mb-16">
                     <div class="bounding-box border border-brand-purple px-12 py-4 bg-white shadow-[8px_8px_0_#8F5BFF]">
                         <div class="inner-nodes"></div>
                         <h2 class="text-4xl md:text-5xl font-black text-brand-purple tracking-tighter uppercase">
@@ -430,19 +640,9 @@
                 </div>
 
                 <!-- Folders Grid Centered -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-5xl">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-5xl mx-auto flex-1 px-8">
                     
-                    <div class="flex flex-col group cursor-pointer hover:-translate-y-2 transition-transform">
-                        <div class="w-3/5 h-6 bg-brand-purple folder-tab"></div>
-                        <div class="w-full bg-brand-yellow border-2 border-brand-purple p-4 h-32 flex flex-col justify-end shadow-[4px_4px_0_#8F5BFF]">
-                            <h3 class="font-black text-brand-purple uppercase text-lg leading-tight">mine-imator<br>renders</h3>
-                        </div>
-                        <div class="mt-4 text-xs font-mono text-gray-600 space-y-1">
-                            <p class="flex justify-between border-b border-gray-300 pb-1"><span>visual dev</span> <span>...</span></p>
-                            <p class="flex justify-between border-b border-gray-300 pb-1"><span>lighting & comp</span> <span>...</span></p>
-                        </div>
-                    </div>
-
+                    <!-- 3D Modelling Folder -->
                     <div class="flex flex-col group cursor-pointer hover:-translate-y-2 transition-transform">
                         <div class="w-3/5 h-6 bg-brand-purple folder-tab"></div>
                         <div class="w-full bg-brand-yellow border-2 border-brand-purple p-4 h-32 flex flex-col justify-end shadow-[4px_4px_0_#8F5BFF]">
@@ -454,10 +654,11 @@
                         </div>
                     </div>
 
+                    <!-- Personal Project Folder -->
                     <div class="flex flex-col group cursor-pointer hover:-translate-y-2 transition-transform">
                         <div class="w-3/5 h-6 bg-brand-purple folder-tab"></div>
                         <div class="w-full bg-brand-yellow border-2 border-brand-purple p-4 h-32 flex flex-col justify-end shadow-[4px_4px_0_#8F5BFF]">
-                            <h3 class="font-black text-brand-purple uppercase text-lg leading-tight">personal<br>project</h3>
+                            <h3 class="font-black text-brand-purple uppercase text-lg leading-tight">personal<br>projects</h3>
                         </div>
                         <div class="mt-4 text-xs font-mono text-gray-600 space-y-1">
                             <p class="flex justify-between border-b border-gray-300 pb-1"><span>topology</span> <span>...</span></p>
@@ -465,17 +666,39 @@
                         </div>
                     </div>
 
+                    <!-- Mine-imator Renders Folder -->
+                    <div class="flex flex-col group cursor-pointer hover:-translate-y-2 transition-transform">
+                        <div class="w-3/5 h-6 bg-brand-purple folder-tab"></div>
+                        <div class="w-full bg-brand-yellow border-2 border-brand-purple p-4 h-32 flex flex-col justify-end shadow-[4px_4px_0_#8F5BFF]">
+                            <h3 class="font-black text-brand-purple uppercase text-lg leading-tight">mine-imator<br>projects</h3>
+                        </div>
+                        <div class="mt-4 text-xs font-mono text-gray-600 space-y-1">
+                            <p class="flex justify-between border-b border-gray-300 pb-1"><span>visual dev</span> <span>...</span></p>
+                            <p class="flex justify-between border-b border-gray-300 pb-1"><span>lighting & comp</span> <span>...</span></p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="absolute bottom-0 left-0 w-full h-12 bg-brand-purple flex items-center justify-between px-6 shrink-0 border-t-2 border-brand-dark text-brand-yellow z-20">
+                    <span class="text-xl font-black uppercase">R12AZQHA</span>
+                    <div class="hidden md:flex space-x-6 text-xs font-bold uppercase opacity-90 text-brand-yellow">
+                        <span>PORTFOLIO 2026</span>
+                    </div>
+                    <span class="text-xs font-mono tracking-widest uppercase">page * 03 / 10</span>
                 </div>
             </div>
         </section>
 
-        <!-- SLIDE 4: PROJECTS SHOWCASE -->
+        <!-- SLIDE 4: PROJECTS SHOWCASE (3D MODELING) -->
         <section class="slide-wrapper" id="slide-4">
-            <div class="slide-content flex flex-col bg-brand-purple text-white">
+            <div class="slide-content flex flex-col bg-brand-purple text-white pb-12">
                 
-                <div class="bg-brand-purple text-white overflow-hidden py-1 border-b border-white/20 shrink-0">
-                    <div class="animate-marquee whitespace-nowrap text-xs font-bold tracking-widest uppercase">
+                <div class="marquee-wrapper bg-brand-purple py-1 border-b border-white/20 shrink-0">
+                    <div class="marquee-content text-xs font-bold tracking-widest uppercase">
                         <span>R12AZQHA * 3D ARTIST * R12AZQHA * 3D ARTIST * R12AZQHA * 3D ARTIST * R12AZQHA * 3D ARTIST *</span>
+                    </div>
+                    <div class="marquee-content text-xs font-bold tracking-widest uppercase">
                         <span>R12AZQHA * 3D ARTIST * R12AZQHA * 3D ARTIST * R12AZQHA * 3D ARTIST * R12AZQHA * 3D ARTIST *</span>
                     </div>
                 </div>
@@ -484,7 +707,7 @@
                     <div class="w-full flex justify-between items-center mb-8">
                         <i data-lucide="crosshair" class="w-6 h-6 text-brand-yellow"></i>
                         
-                        <div class="bounding-box border border-brand-yellow/50 px-8 py-3">
+                        <div class="bounding-box border border-brand-yellow/50 px-8 py-3 bg-brand-purple">
                             <div class="inner-nodes !bg-brand-yellow before:!bg-brand-yellow after:!bg-brand-yellow"></div>
                             <h2 class="text-3xl md:text-5xl font-black tracking-tighter text-brand-yellow uppercase">
                                 3d * modeling
@@ -496,10 +719,6 @@
                         <i data-lucide="crosshair" class="w-6 h-6 text-brand-yellow"></i>
                     </div>
 
-                    <div class="w-full flex justify-center gap-6 text-[10px] font-mono opacity-70 mb-8 border-b border-white/20 pb-4 uppercase">
-                        <span>project uts</span> <span class="text-brand-yellow">|</span> <span>project uas</span> <span class="text-brand-yellow">|</span> <span>personal render</span>
-                    </div>
-
                     <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4 h-full relative group cursor-pointer">
                         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-16 h-16 bg-brand-yellow rounded-full flex items-center justify-center text-brand-purple shadow-xl group-hover:scale-110 transition-transform">
                             <i data-lucide="play" class="w-6 h-6 fill-current ml-1"></i>
@@ -507,7 +726,7 @@
 
                         <div class="bg-gray-300 w-full h-full border-2 border-brand-dark overflow-hidden relative">
                             <div class="absolute inset-0 flex items-center justify-center bg-gray-200">
-                                <span class="text-gray-500 font-mono text-sm uppercase">[ clay / solid view ]</span>
+                                <span class="text-gray-500 font-mono text-sm uppercase">[ solid view ]</span>
                             </div>
                         </div>
 
@@ -518,72 +737,275 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="absolute bottom-0 left-0 w-full h-12 bg-brand-purple flex items-center justify-between px-6 shrink-0 border-t-2 border-brand-dark text-brand-yellow z-20">
+                    <span class="text-xl font-black uppercase">R12AZQHA</span>
+                    <div class="hidden md:flex space-x-6 text-xs font-bold uppercase opacity-90 text-brand-yellow">
+                        <span>PORTFOLIO 2026</span>
+                    </div>
+                    <span class="text-xs font-mono tracking-widest uppercase">page * 04 / 10</span>
+                </div>
             </div>
         </section>
 
-        <!-- SLIDE 5: CONTACT / END SCREEN -->
+        <!-- SLIDE 5: PROJECTS SHOWCASE (PERSONAL PROJECTS) -->
         <section class="slide-wrapper" id="slide-5">
-            <div class="slide-content bg-brand-yellow flex flex-col relative p-8 md:p-12">
+            <div class="slide-content flex flex-col bg-white text-brand-purple pb-12">
                 
-                <!-- Background Grid -->
-                <div class="absolute inset-0 bg-blueprint opacity-50 mix-blend-multiply pointer-events-none z-0"></div>
+                <div class="marquee-wrapper bg-white py-1 border-b-2 border-brand-purple shrink-0">
+                    <div class="marquee-content text-xs font-bold tracking-widest uppercase">
+                        <span>PERSONAL PROJECTS * 3D ARTIST * PERSONAL PROJECTS * 3D ARTIST * PERSONAL PROJECTS * 3D ARTIST *</span>
+                    </div>
+                    <div class="marquee-content text-xs font-bold tracking-widest uppercase">
+                        <span>PERSONAL PROJECTS * 3D ARTIST * PERSONAL PROJECTS * 3D ARTIST * PERSONAL PROJECTS * 3D ARTIST *</span>
+                    </div>
+                </div>
+
+                <div class="flex-1 flex flex-col p-8 md:p-12">
+                    <div class="w-full flex justify-between items-center mb-8">
+                        <i data-lucide="folder" class="w-6 h-6 text-brand-purple"></i>
+                        
+                        <div class="bounding-box border border-brand-purple/50 px-8 py-3 bg-brand-light">
+                            <div class="inner-nodes"></div>
+                            <h2 class="text-3xl md:text-5xl font-black tracking-tighter text-brand-purple uppercase">
+                                personal * projects
+                            </h2>
+                            <p class="absolute -bottom-6 left-0 text-[10px] font-mono opacity-60">2026 PORTFOLIO</p>
+                            <p class="absolute -bottom-6 right-0 text-[10px] font-mono font-bold text-brand-purple">R12</p>
+                        </div>
+
+                        <i data-lucide="folder" class="w-6 h-6 text-brand-purple"></i>
+                    </div>
+
+                    <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4 h-full relative group cursor-pointer">
+                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-16 h-16 bg-brand-purple rounded-full flex items-center justify-center text-white shadow-xl group-hover:scale-110 transition-transform">
+                            <i data-lucide="play" class="w-6 h-6 fill-current ml-1"></i>
+                        </div>
+
+                        <div class="bg-gray-300 w-full h-full border-2 border-brand-purple overflow-hidden relative">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-200">
+                                <span class="text-gray-500 font-mono text-sm uppercase">[ wireframe ]</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-brand-dark w-full h-full border-2 border-brand-purple overflow-hidden relative">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 text-gray-400">
+                                <span class="font-mono text-sm uppercase">[ final render ]</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="absolute bottom-0 left-0 w-full h-12 bg-brand-purple flex items-center justify-between px-6 shrink-0 border-t-2 border-brand-dark text-brand-yellow z-20">
+                    <span class="text-xl font-black uppercase">R12AZQHA</span>
+                    <div class="hidden md:flex space-x-6 text-xs font-bold uppercase opacity-90 text-brand-yellow">
+                        <span>PORTFOLIO 2026</span>
+                    </div>
+                    <span class="text-xs font-mono tracking-widest uppercase">page * 05 / 10</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 6: PROJECTS SHOWCASE (MINE-IMATOR RENDERS) -->
+        <section class="slide-wrapper" id="slide-6">
+            <div class="slide-content flex flex-col bg-brand-yellow text-brand-purple pb-12">
+                
+                <div class="marquee-wrapper bg-brand-yellow py-1 border-b-2 border-brand-purple shrink-0">
+                    <div class="marquee-content text-xs font-bold tracking-widest uppercase">
+                        <span>EXPLORING 3D ENVIRONMENT * EXPLORING 3D ENVIRONMENT * EXPLORING 3D ENVIRONMENT * EXPLORING 3D ENVIRONMENT *</span>
+                    </div>
+                    <div class="marquee-content text-xs font-bold tracking-widest uppercase">
+                        <span>EXPLORING 3D ENVIRONMENT * EXPLORING 3D ENVIRONMENT * EXPLORING 3D ENVIRONMENT * EXPLORING 3D ENVIRONMENT *</span>
+                    </div>
+                </div>
+
+                <div class="flex-1 flex flex-col p-8 md:p-12">
+                    <div class="w-full flex justify-between items-center mb-8">
+                        <i data-lucide="video" class="w-6 h-6 text-brand-purple"></i>
+                        
+                        <div class="bounding-box border border-brand-purple/50 px-8 py-3 bg-white">
+                            <div class="inner-nodes"></div>
+                            <h2 class="text-3xl md:text-5xl font-black tracking-tighter text-brand-purple uppercase">
+                                mine-imator * projects
+                            </h2>
+                            <p class="absolute -bottom-6 left-0 text-[10px] font-mono opacity-60">2026 PORTFOLIO</p>
+                            <p class="absolute -bottom-6 right-0 text-[10px] font-mono font-bold text-brand-purple">R12</p>
+                        </div>
+
+                        <i data-lucide="video" class="w-6 h-6 text-brand-purple"></i>
+                    </div>
+
+                    <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4 h-full relative group cursor-pointer">
+                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-16 h-16 bg-brand-purple rounded-full flex items-center justify-center text-brand-yellow shadow-xl group-hover:scale-110 transition-transform">
+                            <i data-lucide="play" class="w-6 h-6 fill-current ml-1"></i>
+                        </div>
+
+                        <div class="bg-gray-300 w-full h-full border-2 border-brand-purple overflow-hidden relative">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-200">
+                                <span class="text-gray-500 font-mono text-sm uppercase">[ raw pass ]</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-brand-dark w-full h-full border-2 border-brand-purple overflow-hidden relative">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 text-gray-400">
+                                <span class="font-mono text-sm uppercase">[ comp render ]</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="absolute bottom-0 left-0 w-full h-12 bg-brand-purple flex items-center justify-between px-6 shrink-0 border-t-2 border-brand-dark text-brand-yellow z-20">
+                    <span class="text-xl font-black uppercase">R12AZQHA</span>
+                    <div class="hidden md:flex space-x-6 text-xs font-bold uppercase opacity-90 text-brand-yellow">
+                        <span>PORTFOLIO 2026</span>
+                    </div>
+                    <span class="text-xs font-mono tracking-widest uppercase">page * 06 / 10</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 7: MODULAR PHOTO (1 IMAGE) -->
+        <section class="slide-wrapper" id="slide-7">
+            <div class="slide-content flex flex-col bg-white relative pb-12">
+                
+                <div class="flex-1 w-full relative group cursor-pointer">
+                    <!-- Image Placeholder 1 -->
+                    <div class="absolute inset-0 flex items-center justify-center bg-gray-200">
+                        <span class="text-gray-500 font-mono text-sm uppercase">[ Photo 1 - Fullscreen ]</span>
+                    </div>
+                </div>
+                
+                <div class="absolute bottom-0 left-0 w-full h-12 bg-brand-purple flex items-center justify-between px-6 shrink-0 border-t-2 border-brand-dark text-brand-yellow z-20">
+                    <span class="text-xl font-black uppercase">R12AZQHA</span>
+                    <div class="hidden md:flex space-x-6 text-xs font-bold uppercase opacity-90 text-brand-yellow">
+                        <span>PORTFOLIO 2026</span>
+                    </div>
+                    <span class="text-xs font-mono tracking-widest uppercase">page * 07 / 10</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 8: MODULAR PHOTO (2 IMAGES) -->
+        <section class="slide-wrapper" id="slide-8">
+            <div class="slide-content flex flex-col bg-white relative pb-12">
+                
+                <div class="flex-1 w-full grid grid-cols-2">
+                    <div class="relative border-r-2 border-brand-purple group cursor-pointer">
+                        <div class="absolute inset-0 flex items-center justify-center bg-gray-200">
+                            <span class="text-gray-500 font-mono text-sm uppercase">[ Photo 1 ]</span>
+                        </div>
+                    </div>
+                    <div class="relative group cursor-pointer">
+                        <div class="absolute inset-0 flex items-center justify-center bg-gray-300">
+                            <span class="text-gray-500 font-mono text-sm uppercase">[ Photo 2 ]</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="absolute bottom-0 left-0 w-full h-12 bg-brand-purple flex items-center justify-between px-6 shrink-0 border-t-2 border-brand-dark text-brand-yellow z-20">
+                    <span class="text-xl font-black uppercase">R12AZQHA</span>
+                    <div class="hidden md:flex space-x-6 text-xs font-bold uppercase opacity-90 text-brand-yellow">
+                        <span>PORTFOLIO 2026</span>
+                    </div>
+                    <span class="text-xs font-mono tracking-widest uppercase">page * 08 / 10</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 9: MODULAR PHOTO (3 IMAGES) -->
+        <section class="slide-wrapper" id="slide-9">
+            <div class="slide-content flex flex-col bg-white relative pb-12">
+                
+                <div class="flex-1 w-full grid grid-cols-3">
+                    <div class="relative border-r-2 border-brand-purple group cursor-pointer">
+                        <div class="absolute inset-0 flex items-center justify-center bg-gray-200">
+                            <span class="text-gray-500 font-mono text-sm uppercase">[ Photo 1 ]</span>
+                        </div>
+                    </div>
+                    <div class="relative border-r-2 border-brand-purple group cursor-pointer">
+                        <div class="absolute inset-0 flex items-center justify-center bg-gray-300">
+                            <span class="text-gray-500 font-mono text-sm uppercase">[ Photo 2 ]</span>
+                        </div>
+                    </div>
+                    <div class="relative group cursor-pointer">
+                        <div class="absolute inset-0 flex items-center justify-center bg-gray-200">
+                            <span class="text-gray-500 font-mono text-sm uppercase">[ Photo 3 ]</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="absolute bottom-0 left-0 w-full h-12 bg-brand-purple flex items-center justify-between px-6 shrink-0 border-t-2 border-brand-dark text-brand-yellow z-20">
+                    <span class="text-xl font-black uppercase">R12AZQHA</span>
+                    <div class="hidden md:flex space-x-6 text-xs font-bold uppercase opacity-90 text-brand-yellow">
+                        <span>PORTFOLIO 2026</span>
+                    </div>
+                    <span class="text-xs font-mono tracking-widest uppercase">page * 09 / 10</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 10: CONTACT / END SCREEN -->
+        <section class="slide-wrapper" id="slide-10">
+            <div class="slide-content bg-grid-purple flex flex-col relative items-center p-8 md:p-12 pb-20">
 
                 <!-- Top Left: Save Portfolio Button -->
-                <button onclick="window.print()" class="no-print absolute top-8 left-8 text-xs font-bold font-mono text-brand-purple uppercase hover:underline flex items-center gap-2 z-20">
+                <button onclick="window.print()" class="no-print absolute top-8 left-8 text-xs font-bold font-mono text-brand-purple uppercase hover:underline flex items-center gap-2 z-20 bg-white px-3 py-1.5 border-2 border-brand-purple shadow-[2px_2px_0_#8F5BFF] hover:translate-y-0.5 hover:shadow-[1px_1px_0_#8F5BFF] transition-all">
                     <i data-lucide="printer" class="w-4 h-4"></i> SAVE MY PORTFOLIO
                 </button>
 
-                <!-- Top Right: Brand -->
-                <div class="absolute top-8 right-8 text-xs font-bold font-mono text-brand-purple uppercase z-20 opacity-80">
-                    R12AZQHA
-                </div>
-
-                <!-- Center Content: Thank You & QR -->
-                <div class="flex-1 flex flex-col items-center justify-center text-center mt-12 z-10">
-                    <p class="text-lg md:text-xl font-medium mb-4 text-brand-purple uppercase tracking-widest">That's is all for now!</p>
-                    <h2 class="text-4xl md:text-7xl lg:text-[100px] font-black tracking-tighter uppercase mb-12 text-brand-purple" style="text-shadow: 2px 2px 0px #fff;">
-                        Thank You <span class="font-light">For Visiting</span>
-                    </h2>
+                <!-- Center Content: Yellow theme with Purple Squares Layout -->
+                <div class="flex-1 flex flex-col items-center justify-center z-10 w-full max-w-xl">
                     
-                    <!-- QR Code Block (Clickable to top) -->
-                    <div class="flex flex-col items-center">
-                        <a href="#slide-1" class="block p-4 bg-white border-4 border-brand-purple shadow-[16px_16px_0_#8F5BFF] hover:-translate-y-2 hover:shadow-[20px_20px_0_#8F5BFF] transition-all relative">
-                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://r12azqha.com/portofolio/&color=8F5BFF&bgcolor=FFFFFF" alt="QR Code to Portfolio" class="w-48 h-48 md:w-64 md:h-64 object-contain">
-                        </a>
-                        <span class="font-mono text-sm uppercase tracking-widest text-brand-purple mt-6 font-bold bg-white px-4 py-2 border-2 border-brand-purple shadow-[4px_4px_0_#8F5BFF]">Scan to view on web</span>
-                    </div>
-                </div>
-
-                <!-- Bottom Columns: Contact & Bio -->
-                <div class="w-full flex flex-col md:flex-row justify-between items-start md:items-end mt-auto pt-12 text-sm z-10 text-brand-purple">
-                    
-                    <!-- Left: Bio Pitch -->
-                    <div class="max-w-sm mb-8 md:mb-0 text-left">
-                        <p class="font-black text-2xl uppercase tracking-wider mb-2" style="text-shadow: 1px 1px 0px #fff;">Let's Collab!</p>
-                        <p class="opacity-90 font-medium leading-relaxed">I'm always open for new projects and collaborations. Feel free to reach out.</p>
+                    <div class="bounding-box border-2 border-brand-purple px-10 py-4 bg-white mb-8 w-full text-center shadow-[4px_4px_0_#8F5BFF]">
+                        <div class="inner-nodes"></div>
+                        <h2 class="text-4xl md:text-6xl font-black text-brand-purple uppercase tracking-tighter leading-tight">
+                            LET'S BUILD<br>TOGETHER
+                        </h2>
                     </div>
                     
-                    <!-- Right: Contact Info -->
-                    <div class="text-left md:text-right font-bold">
-                        <p class="font-black text-xl uppercase tracking-wider mb-3" style="text-shadow: 1px 1px 0px #fff;">Contact me!</p>
-                        <div class="space-y-2">
-                            <p class="flex items-center md:justify-end gap-2">
-                                <i data-lucide="mail" class="w-4 h-4"></i> 
-                                <!-- Email populated by JS to prevent scraping -->
-                                <a href="#" class="protected-email hover:underline">...</a>
-                            </p>
-                            <p class="flex items-center md:justify-end gap-2">
-                                <i data-lucide="globe" class="w-4 h-4"></i> <a href="https://12azqha.com" target="_blank" class="hover:underline">12azqha.com</a>
-                            </p>
-                            <p class="flex items-center md:justify-end gap-2">
-                                <img src="https://cdn.simpleicons.org/instagram/8F5BFF" alt="Instagram" class="w-4 h-4" /> 
-                                <a href="https://instagram.com/r_12k." target="_blank" class="hover:underline">@r_12k.</a>
-                            </p>
+                    <!-- QR Code Block -->
+                    <a href="#slide-1" class="block p-4 bg-white border-4 border-brand-purple shadow-[16px_16px_0_#8F5BFF] hover:-translate-y-2 hover:shadow-[20px_20px_0_#8F5BFF] transition-all relative mb-6 group">
+                        <!-- corner accents -->
+                        <div class="absolute top-2 left-2 w-2 h-2 bg-brand-purple"></div>
+                        <div class="absolute top-2 right-2 w-2 h-2 bg-brand-purple"></div>
+                        <div class="absolute bottom-2 left-2 w-2 h-2 bg-brand-purple"></div>
+                        <div class="absolute bottom-2 right-2 w-2 h-2 bg-brand-purple"></div>
+
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://r12azqha.com/portofolio/&color=8F5BFF&bgcolor=FFFFFF" alt="QR Code to Portfolio" class="w-48 h-48 md:w-56 md:h-56 object-contain">
+                    </a>
+                    
+                    <div class="font-mono text-xs uppercase tracking-widest text-brand-purple font-bold bg-white px-6 py-2 border-2 border-brand-purple shadow-[4px_4px_0_#8F5BFF] flex items-center gap-2 mb-8">
+                        <i data-lucide="scan-line" class="w-4 h-4"></i> VIEW IT ONLINE
+                    </div>
+
+                </div>
+
+                <!-- Contact Box moved absolute bottom right inside slide-content -->
+                <div class="absolute bottom-[4.5rem] right-8 md:bottom-16 md:right-12 bg-white border-2 border-brand-purple p-4 shadow-[6px_6px_0_#8F5BFF] z-20 w-auto">
+                    <div class="space-y-2 font-bold text-brand-purple text-sm font-mono flex flex-col items-end">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="mail" class="w-5 h-5"></i>
+                            <a href="#" class="protected-email hover:underline text-brand-purple"><span>...</span></a>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="globe" class="w-5 h-5"></i>
+                            <a href="https://12azqha.com" target="_blank" class="hover:underline text-brand-purple">12azqha.com</a>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <img src="https://cdn.simpleicons.org/instagram/8F5BFF" alt="Instagram" class="w-4 h-4" />
+                            <a href="https://instagram.com/r_12k." target="_blank" class="hover:underline text-brand-purple">@r_12k.</a>
                         </div>
                     </div>
-
                 </div>
 
+                <!-- Absolute Footer Strip -->
+                <div class="absolute bottom-0 left-0 w-full h-12 bg-brand-purple flex items-center justify-between px-6 shrink-0 border-t-2 border-brand-dark text-brand-yellow z-20">
+                    <span class="text-xl font-black uppercase">R12AZQHA</span>
+                    <div class="hidden md:flex space-x-6 text-xs font-bold uppercase opacity-90 text-brand-yellow">
+                        <span>That's all for now!</span>
+                    </div>
+                    <span class="text-xs font-mono tracking-widest uppercase">page * 10 / 10</span>
+                </div>
             </div>
         </section>
 
@@ -594,18 +1016,31 @@
 
         // Devil's Advocate: Dynamic Email Masking to stop scrapers
         document.addEventListener('DOMContentLoaded', () => {
-            const emailElements = document.querySelectorAll('.protected-email');
-            const u = 'contact';
-            const d = '12azqha.com';
+            const emailElements = document.querySelectorAll('.protected-email span');
+            const u = 'business';
+            const d = 'r12azqha.com';
             
             emailElements.forEach(el => {
-                // visually build it
+                // visually build it inside the span so the arrow icon isn't overwritten
                 el.textContent = `${u}@${d}`;
                 
-                // attach click event dynamically
-                el.addEventListener('click', (e) => {
+                // attach click event dynamically to the parent anchor
+                el.parentElement.addEventListener('click', (e) => {
                     e.preventDefault();
                     window.location.href = `mailto:${u}@${d}`;
+                });
+            });
+
+            // Auto-number slides and update IDs
+            const slides = document.querySelectorAll('.slide-wrapper');
+            const total = slides.length;
+            slides.forEach((slide, i) => {
+                slide.id = `slide-${i + 1}`;
+                const spans = slide.querySelectorAll('span');
+                spans.forEach(span => {
+                    if (span.textContent.includes('page *')) {
+                        span.textContent = `page * ${String(i + 1).padStart(2, '0')} / ${total}`;
+                    }
                 });
             });
         });
