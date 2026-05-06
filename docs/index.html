@@ -199,6 +199,11 @@
             .no-print {
                 display: none !important;
             }
+            /* Reset marquees to be static so they don't break in PDFs */
+            .marquee-content {
+                animation: none !important;
+                transform: translateX(0) !important;
+            }
             /* force background colors */
             * {
                 -webkit-print-color-adjust: exact !important;
@@ -221,8 +226,8 @@
         <section class="slide-wrapper" id="slide-1">
             <div class="slide-content bg-blueprint">
                 
-                <!-- The top marquee is hidden on print using no-print -->
-                <div class="marquee-wrapper bg-brand-purple py-1 border-b-2 border-brand-purple z-20 no-print">
+                <!-- Brought back the cover header for print -->
+                <div class="marquee-wrapper bg-brand-purple py-1 border-b-2 border-brand-purple z-20">
                     <div class="marquee-content text-xs font-bold tracking-widest uppercase text-white">
                         <span>R12AZQHA * 3D ARTIST * R12AZQHA * 3D ARTIST * R12AZQHA * 3D ARTIST * R12AZQHA * 3D ARTIST * R12AZQHA * 3D ARTIST * </span>
                     </div>
